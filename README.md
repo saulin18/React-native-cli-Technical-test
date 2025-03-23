@@ -1,97 +1,68 @@
+# Star Wars Universe Explorer
 
-# React Native Project
+![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using the React Native CLI.
+A mobile application built with React Native CLI that explores the Star Wars universe using SWAPI (Star Wars API).
 
-## Getting Started
+## 📱 Overview
 
-### Running the App
+This application demonstrates:
+- SWAPI integration with Spanish localization
+- Architecture following Atomic Design principles
+- Modern React Native development patterns
+- Type-safe implementation with TypeScript
+- State management with React Query
 
-The development environment is already set up with all necessary dependencies. You can start developing right away!
+## ✨ Features
 
-#### Android
+- **Multi-Entity Listing**: Browse Films, Planets, and Characters
+- **Advanced Search**: Find characters by name/attributes
+- **Detailed Views**: Comprehensive character information
+- **Localized Data**: All API responses translated to Spanish
+- **Responsive Design**: Optimized for various screen sizes
 
-To run your app on Android:
+## 🛠 Tech Stack
 
+- **React Native CLI** (0.78.1)
+- **React Query** (v5) - Data fetching/caching
+- **React Navigation** (v6) - Navigation handling
+- **TypeScript** (v5.0) - Type safety
+- **Axios** (v1.8) - HTTP client
+- **Jest** (v29.6) - Testing framework
+
+## 📂 Project Structure
+
+src/
+├── components/
+│ ├── atoms/ # Reusable UI elements
+│ ├── molecules/ # Complex UI components
+│ └── organisms/ # Screen sections
+├── hooks/ # Custom React hooks
+├── navigation/ # Navigation configuration
+├── screens/ # Application views
+├── services/ # API service layer
+└── types/ # Type definitions
+
+
+## 🚀 Setup
+
+1. **Clone Repository**
 ```bash
+git clone https://github.com...
+cd ...
+
+Install Dependencies
+
+bash
+npm install --legacy-per-deps --force
+
+Running the App
+
+Android:
+bash
 npm run android
-```
 
-This will:
-1. Start the Metro bundler if it's not already running
-2. Build the Android app
-3. Install and launch it on the Android emulator
-
-#### iOS
-
-To run your app on iOS (requires macOS):
-
-```bash
+iOS:
+bash
 npm run ios
-```
-
-### Development
-
-The Metro bundler will start automatically when you run the app. If you need to start it manually:
-
-```bash
-npm start
-```
-
-### Testing and Linting
-
-Run tests:
-```bash
-npm test
-```
-
-Run linter:
-```bash
-npm run lint
-```
-
-## Project Structure
-
-```
-your-project/
-├── android/               # Android native code
-├── ios/                  # iOS native code
-├── src/                  # JavaScript/TypeScript source code
-│   ├── components/       # Reusable components
-│   ├── screens/         # Screen components
-│   └── App.tsx          # Application entry point
-├── __tests__/           # Test files
-├── .idx/                # IDX configuration
-└── package.json         # Project dependencies and scripts
-```
-
-## Useful Resources
-
-- [React Native Documentation](https://reactnative.dev/docs/getting-started)
-- [React Native CLI](https://github.com/react-native-community/cli)
-- [Metro Bundler](https://facebook.github.io/metro/)
-- [React Native Testing](https://reactnative.dev/docs/testing-overview)
-
-## Troubleshooting
-
-### Metro Bundler Issues
-If you encounter issues with Metro bundler:
-1. Clear Metro cache: `npm start --reset-cache`
-2. Make sure Watchman is running properly
-3. Check the terminal output for specific error messages
-
-### Android Build Issues
-If you encounter Android build issues:
-1. Check that ANDROID_HOME is properly set
-2. Ensure Android SDK tools are properly installed
-3. Try cleaning the build: `cd android && ./gradlew clean`
-
-### iOS Build Issues
-If you encounter iOS build issues:
-1. Make sure you have Xcode installed (macOS only)
-2. Try cleaning the build: `cd ios && pod install`
-3. Clear derived data in Xcode
-
-## License
-
-This project is open source and available under the MIT License.
