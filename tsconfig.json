@@ -1,8 +1,7 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["es6", "dom"],
+    "lib": ["es2019", "dom", "esnext"], // Actualizado aquí
     "jsx": "react-native",
     "moduleResolution": "bundler",
     "allowJs": true,
