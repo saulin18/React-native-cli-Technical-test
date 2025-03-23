@@ -1,49 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { api } from '../services/api.service';
-import { CharacterList } from '../components/organisms/CharacterList';
 import { Text } from '../components/atoms/Text';
+import { CharacterList } from '../components/organisms/CharacterList';
+import { useCharacters } from '../hooks/useCharacters';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
-import { Character } from '../types/api.types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Characters'>;
 
 export const CharactersScreen: React.FC<Props> = ({ navigation }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-
   const {
-    data,
+    searchQuery,
+    setSearchQuery,
+    characters,
     isLoading,
-    fetchNextPage,
-    hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery({
-    queryKey: ['characters', searchQuery],
-    queryFn: ({ pageParam }) => 
-      searchQuery
-        ? api.searchCharacters(searchQuery, pageParam)
-        : api.getCharacters(pageParam),
-    getNextPageParam: (lastPage) => {
-      if (!lastPage.next) return undefined;
-      const url = new URL(lastPage.next);
-      return Number(url.searchParams.get('page'));
-    },
-    initialPageParam: 1,
-  });
-
-  const characters = data?.pages.flatMap((page: { results: any; }) => page.results) || [];
-
-  const handleEndReached = () => {
-    if (hasNextPage && !isFetchingNextPage) {
-      fetchNextPage();
-    }
-  };
-
-  const handleCharacterPress = (character: Character) => {
-    navigation.navigate('CharacterDetail', { character });
-  };
+    handleEndReached,
+    handleCharacterPress,
+  } = useCharacters(navigation);
 
   return (
     <View style={styles.container}>
@@ -66,8 +40,6 @@ export const CharactersScreen: React.FC<Props> = ({ navigation }) => {
   );
 };
 
-// Mantener los mismos estilos
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -88,4 +60,20 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: '#fff',
   },
-}); 
+  navLinks: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 12,
+  },
+  link: {
+    padding: 8,
+    borderRadius: 8,
+  },
+  pressed: {
+    backgroundColor: '#e0e0e0',
+  },
+  linkText: {
+    color: '#2c3e50',
+    fontWeight: '500',
+  },
+});

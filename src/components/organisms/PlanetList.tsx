@@ -1,24 +1,21 @@
 import React from 'react';
 import { FlatList, ActivityIndicator, StyleSheet, View } from 'react-native';
-import { CharacterCard } from '../molecules/CharacterCard';
-import { Character } from '../../types/api.types';
+import { PlanetCard } from '../molecules/PlanetCard';
+import { Planet } from '../../types/api.types';
 import { Text } from '../atoms/Text';
 
-interface CharacterListProps {
-  characters: Character[];
-  onCharacterPress: (character: Character) => void;
+interface PlanetsListProps {
+  planets: Planet[];
   isLoading?: boolean;
   onEndReached?: () => void;
 }
 
-export const CharacterList: React.FC<CharacterListProps> = ({
-  characters,
-  onCharacterPress,
+export const PlanetsList: React.FC<PlanetsListProps> = ({
+  planets,
   isLoading,
   onEndReached,
 }) => {
-
-  if (isLoading && characters.length === 0) {
+  if (isLoading && planets.length === 0) {
     return (
       <View style={styles.centered}>
         <ActivityIndicator size="large" />
@@ -26,16 +23,12 @@ export const CharacterList: React.FC<CharacterListProps> = ({
     );
   }
 
-
   return (
     <FlatList
-      data={characters}
+      data={planets}
       keyExtractor={(item) => item.url}
       renderItem={({ item }) => (
-        <CharacterCard
-          character={item}
-          onPress={() => onCharacterPress(item)}
-        />
+        <PlanetCard planet={item}  />
       )}
       onEndReached={onEndReached}
       onEndReachedThreshold={0.5}
@@ -48,7 +41,7 @@ export const CharacterList: React.FC<CharacterListProps> = ({
       }
       ListEmptyComponent={
         <View style={styles.centered}>
-          <Text variant="body">No se encontraron personajes</Text>
+          <Text variant="body">No se encontraron planetas</Text>
         </View>
       }
     />

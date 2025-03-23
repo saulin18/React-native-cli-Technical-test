@@ -14,10 +14,6 @@
       "react-native",
       "react-test-renderer"
     ],
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-    "baseUrl": ".",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

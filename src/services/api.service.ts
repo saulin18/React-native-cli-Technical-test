@@ -55,7 +55,6 @@ const translatePlanet = (planet: any): Planet => ({
   editado: planet.edited,
   url: planet.url,
 });
-
 export const api = {
   async getCharacters(page = 1): Promise<APIResponse<Character>> {
     const response = await axios.get(`${BASE_URL}/people/?page=${page}`);
@@ -66,23 +65,12 @@ export const api = {
   },
 
   async searchCharacters(query: string, pageParam: number): Promise<APIResponse<Character>> {
-    const response = await axios.get(`${BASE_URL}/people/?search=${query}`);
+    const response = await axios.get(
+      `${BASE_URL}/people/?search=${query}&page=${pageParam}`
+    );
     return {
       ...response.data,
       results: response.data.results.map(translateCharacter),
-    };
-  },
-
-  async getCharacterById(id: string): Promise<Character> {
-    const response = await axios.get(`${BASE_URL}/people/${id}/`);
-    return translateCharacter(response.data);
-  },
-
-  async getFilms(): Promise<APIResponse<Film>> {
-    const response = await axios.get(`${BASE_URL}/films/`);
-    return {
-      ...response.data,
-      results: response.data.results.map(translateFilm),
     };
   },
 
@@ -93,4 +81,17 @@ export const api = {
       results: response.data.results.map(translatePlanet),
     };
   },
-}; 
+
+  async getFilms(page = 1): Promise<APIResponse<Film>> {
+    const response = await axios.get(`${BASE_URL}/films/?page=${page}`);
+    return {
+      ...response.data,
+      results: response.data.results.map(translateFilm),
+    };
+  },
+
+  async getCharacterDetail(CharacterId: number): Promise<Character> {
+    const response = await axios.get(`${BASE_URL}/people/${CharacterId}`);
+    return translateCharacter(response.data);
+  },
+  }

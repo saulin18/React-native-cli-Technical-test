@@ -28,4 +28,4 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, onPress
       </Card>
     </TouchableOpacity>
   );
-}; 
+};
